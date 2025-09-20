@@ -1,16 +1,22 @@
 package com.workshop.mongodb.models.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "users")
 public class User {
 
     @Id
-
     private String id;
     private String name;
     private String email;
+
+    @DBRef(lazy = true) //Referencia aos posts, usa essa anotations
+    public List<Post> post = new ArrayList<>();
 
     public User(){
 
