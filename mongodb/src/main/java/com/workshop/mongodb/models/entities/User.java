@@ -16,7 +16,7 @@ public class User {
     private String email;
 
     @DBRef(lazy = true) //Referencia aos posts, usa essa anotations
-    public List<Post> post = new ArrayList<>();
+    public List<Post> posts = new ArrayList<>();
 
     public User(){
 
@@ -50,5 +50,9 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
     }
 }
