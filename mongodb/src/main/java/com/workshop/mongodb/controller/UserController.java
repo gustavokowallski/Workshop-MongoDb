@@ -1,5 +1,6 @@
 package com.workshop.mongodb.controller;
 
+import com.workshop.mongodb.dto.PostDTO;
 import com.workshop.mongodb.dto.UserDTO;
 import com.workshop.mongodb.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,16 @@ public class UserController {
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+
+    @GetMapping(value = "/{id/posts}")
+    public ResponseEntity<List<PostDTO>> getUserPosts(@PathVariable String id){
+        List<PostDTO> postDTO = userService.getUsersPosts(id);
+        return ResponseEntity.ok().body(postDTO);
+
+    }
+
+
 
 
 }

@@ -1,6 +1,8 @@
 package com.workshop.mongodb.services;
 
+import com.workshop.mongodb.dto.PostDTO;
 import com.workshop.mongodb.dto.UserDTO;
+import com.workshop.mongodb.models.entities.Post;
 import com.workshop.mongodb.models.entities.User;
 import com.workshop.mongodb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,13 @@ public class UserService {
     public void delete(String id){
         existsById(id);
         userRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostDTO> getUsersPosts(String id){
+        User user = getEntityById(id);
+
+        return user.getPosts().stream().map(PostDTO::new).toList();
     }
 
     private void existsById(String id){
