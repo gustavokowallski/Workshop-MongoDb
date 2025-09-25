@@ -24,8 +24,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserDTO findById(String id){
-        User user = userRepository.findById(id)
-                .orElseThrow();
+        User user = getEntityById(id);
         return new UserDTO(user);
     }
 
@@ -38,9 +37,21 @@ public class UserService {
 
     }
 
+    @Transactional(readOnly = false)
+    public UserDTO update(String id, UserDTO dto){
+        User user = getEntityById(id);
+        copyDtoToEntity(dto, user);
+        return new UserDTO(userRepository.save(user));
+
+    }
+
     private void copyDtoToEntity(UserDTO userDTO, User user) {
         user.setName(userDTO.getName());
         user.setName(userDTO.getEmail());
+    }
+    private User getEntityById(String id){
+        return userRepository.findById(id)
+                .orElseThrow();
     }
 
 }

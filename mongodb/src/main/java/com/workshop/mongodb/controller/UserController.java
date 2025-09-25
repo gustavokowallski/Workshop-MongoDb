@@ -23,7 +23,7 @@ public class UserController {
         return ResponseEntity.ok().body(list);
 
     }
-    @GetMapping(name = "/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<UserDTO>findById(@PathVariable String id){
         UserDTO userDTO = userService.findById(String.valueOf(id));
         return ResponseEntity.ok().body(userDTO);
@@ -35,6 +35,12 @@ public class UserController {
         UserDTO userDTO = userService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(userDTO);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable String id, @RequestBody UserDTO dto){
+        UserDTO userDTO = userService.update(id, dto);
+        return ResponseEntity.ok().body(userDTO);
     }
 
 }
