@@ -22,4 +22,11 @@ public class UserService {
         return users.stream().map(UserDTO::new).toList();
     }
 
+    @Transactional(readOnly = false)
+    public UserDTO findById(String id){
+        User user = userRepository.findById(id)
+                .orElseThrow();
+        return new UserDTO(user);
+    }
+
 }
