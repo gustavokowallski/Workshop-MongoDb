@@ -2,6 +2,7 @@ package com.workshop.mongodb.services;
 
 import com.workshop.mongodb.dto.PostDTO;
 import com.workshop.mongodb.dto.UserDTO;
+import com.workshop.mongodb.exceptions.ResourceNotFoundException;
 import com.workshop.mongodb.models.entities.Post;
 import com.workshop.mongodb.models.entities.User;
 import com.workshop.mongodb.repositories.UserRepository;
@@ -70,7 +71,7 @@ public class UserService {
     }
     private User getEntityById(String id){
         return userRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException("Id não existe"));
     }
 
 }
