@@ -45,6 +45,16 @@ public class UserService {
 
     }
 
+    @Transactional(readOnly = false)
+    public void delete(String id){
+        existsById(id);
+        userRepository.deleteById(id);
+    }
+
+    private void existsById(String id){
+        getEntityById(id);
+    }
+
     private void copyDtoToEntity(UserDTO userDTO, User user) {
         user.setName(userDTO.getName());
         user.setName(userDTO.getEmail());
