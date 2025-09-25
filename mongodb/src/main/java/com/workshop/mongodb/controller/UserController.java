@@ -4,11 +4,10 @@ import com.workshop.mongodb.dto.UserDTO;
 import com.workshop.mongodb.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -24,10 +23,18 @@ public class UserController {
         return ResponseEntity.ok().body(list);
 
     }
-    @GetMapping(name = "{id}")
+    @GetMapping(name = "/{id}")
     public ResponseEntity<UserDTO>findById(@PathVariable String id){
         UserDTO userDTO = userService.findById(String.valueOf(id));
         return ResponseEntity.ok().body(userDTO);
 
     }
+
+    @PostMapping
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO dto){
+        UserDTO userDTO = userService.insert(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDTO.getId()).toUri();
+        return ResponseEntity.created(uri).body(userDTO);
+    }
+
 }

@@ -22,11 +22,25 @@ public class UserService {
         return users.stream().map(UserDTO::new).toList();
     }
 
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public UserDTO findById(String id){
         User user = userRepository.findById(id)
                 .orElseThrow();
         return new UserDTO(user);
+    }
+
+    @Transactional(readOnly = false)
+    public UserDTO insert(UserDTO userDTO){
+        User user = new User();
+        copyDtoToEntity(userDTO, user);
+        user = userRepository.save(user);
+        return new UserDTO(user);
+
+    }
+
+    private void copyDtoToEntity(UserDTO userDTO, User user) {
+        user.setName(userDTO.getName());
+        user.setName(userDTO.getEmail());
     }
 
 }
