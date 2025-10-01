@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -32,5 +33,22 @@ public class PostService {
         return posts.stream().map(PostDTO::new).toList();
     }
 
+    public List<PostDTO> fullSearch(String text, String start, String end){
+        Instant startMoment = convertMoment(start, Instant.ofEpochMilli(0L));
+        Instant endMoment = convertMoment(start, Instant.ofEpochMilli(0L));
 
+        List<Post> posts = postRepository.fullSearch(text, startMoment, endMoment);
+        return posts.stream().map(PostDTO::new).toList();
+    }
+
+    private Instant convertMoment(String originalString, Instant alternative) {
+        try {
+            return Instant.parse(originalString);
+
+        } catch (Exception e) {
+            return alternative;
+        }
+    }
 }
+
+

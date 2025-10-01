@@ -12,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(value = "/users")
 public class UserController {
 
     @Autowired
@@ -51,7 +51,7 @@ public class UserController {
     }
 
 
-    @GetMapping(value = "/{id/posts}")
+    @GetMapping(value = "/{id}/posts")
     public ResponseEntity<List<PostDTO>> getUserPosts(@PathVariable String id){
         List<PostDTO> postDTO = userService.getUsersPosts(id);
         return ResponseEntity.ok().body(postDTO);

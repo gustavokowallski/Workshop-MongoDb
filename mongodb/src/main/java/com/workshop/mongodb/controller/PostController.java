@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping(value = "/posts")
 public class PostController {
 
     @Autowired
@@ -33,6 +33,15 @@ public class PostController {
         List<PostDTO> result = postService.findByTitle(text);
         return ResponseEntity.ok().body(result);
 
+    }
+
+    @GetMapping(value="/fullsearch")
+    public ResponseEntity<List<PostDTO>> fullSearch(
+            @RequestParam(value="text", defaultValue="") String text,
+            @RequestParam(value="start", defaultValue="") String start,
+            @RequestParam(value="end", defaultValue="") String end) {
+        List<PostDTO> list = postService.fullSearch(text, start, end);
+        return ResponseEntity.ok().body(list);
     }
 
 
