@@ -19,12 +19,17 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    @Transactional(readOnly = true)
+
     public PostDTO findById(String id){
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Id does not exists"));
 
         return new PostDTO(post);
+    }
+
+    public List<PostDTO> findByTitle(String text){
+        List<Post> posts = postRepository.findByTitleContainingIgnoreCase(text);
+        return posts.stream().map(PostDTO::new).toList();
     }
 
 

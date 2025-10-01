@@ -18,20 +18,17 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Transactional(readOnly = true)
     public List<UserDTO> findAll(){
         List<User> users = userRepository.findAll();
 
         return users.stream().map(UserDTO::new).toList();
     }
 
-    @Transactional(readOnly = true)
     public UserDTO findById(String id){
         User user = getEntityById(id);
         return new UserDTO(user);
     }
 
-    @Transactional(readOnly = false)
     public UserDTO insert(UserDTO userDTO){
         User user = new User();
         copyDtoToEntity(userDTO, user);
@@ -40,7 +37,6 @@ public class UserService {
 
     }
 
-    @Transactional(readOnly = false)
     public UserDTO update(String id, UserDTO dto){
         User user = getEntityById(id);
         copyDtoToEntity(dto, user);
@@ -48,13 +44,11 @@ public class UserService {
 
     }
 
-    @Transactional(readOnly = false)
     public void delete(String id){
         existsById(id);
         userRepository.deleteById(id);
     }
 
-    @Transactional(readOnly = true)
     public List<PostDTO> getUsersPosts(String id){
         User user = getEntityById(id);
 
