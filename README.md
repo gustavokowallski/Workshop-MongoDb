@@ -11,7 +11,7 @@ O sistema simula um **mini blog** com três entidades principais:
 - **Comentários**  
 - **Usuário**  
 
-O objetivo foi ver como o uso do **MongoDB** se mostra mais eficiente nesse caso, já que os dados dessas entidades se relacionam naturalmente e podem ser recuperados em **uma única chamada**, diferente de um banco relacional que exigiria vários *joins*.  
+O objetivo analisar o cenário e entender como o **MongoDB** é mais eficiente nesse caso, já que os dados dessas entidades se relacionam naturalmente e podem ser recuperados em **uma única chamada**, diferente de um banco relacional que exigiria vários *joins*.  
 
 ---
 
@@ -42,7 +42,8 @@ O objetivo foi ver como o uso do **MongoDB** se mostra mais eficiente nesse caso
 
 ---
 
-## 🏗️ Cenário de Estudo  
-- **SQL:** exigiria múltiplos *joins* para unir Posts, Comentários e Usuários.  
-- **NoSQL (MongoDB):** armazena os dados relacionados juntos, otimizando consultas e melhorando performance em cenários de **alta requisição**.  
+## 🏗️ Cenário no SQL | NoSQL  
+- **SQL:** múltiplos *joins* para unir Posts, Comentários e Usuários.  
+- **NoSQL:** armazena e recupera os dados relacionados juntos, otimizando consultas e melhorando performance em cenários de **alta requisição** e **dados simples**.  
+
 
