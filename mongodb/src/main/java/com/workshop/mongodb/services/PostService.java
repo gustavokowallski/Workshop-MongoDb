@@ -1,15 +1,11 @@
 package com.workshop.mongodb.services;
 
 import com.workshop.mongodb.dto.PostDTO;
-import com.workshop.mongodb.dto.UserDTO;
 import com.workshop.mongodb.exceptions.ResourceNotFoundException;
 import com.workshop.mongodb.models.entities.Post;
-import com.workshop.mongodb.models.entities.User;
 import com.workshop.mongodb.repositories.PostRepository;
-import com.workshop.mongodb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
@@ -35,7 +31,7 @@ public class PostService {
 
     public List<PostDTO> fullSearch(String text, String start, String end){
         Instant startMoment = convertMoment(start, Instant.ofEpochMilli(0L));
-        Instant endMoment = convertMoment(start, Instant.ofEpochMilli(0L));
+        Instant endMoment = convertMoment(end, Instant.now());
 
         List<Post> posts = postRepository.fullSearch(text, startMoment, endMoment);
         return posts.stream().map(PostDTO::new).toList();

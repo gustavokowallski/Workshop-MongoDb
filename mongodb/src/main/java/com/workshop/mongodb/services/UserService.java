@@ -3,12 +3,10 @@ package com.workshop.mongodb.services;
 import com.workshop.mongodb.dto.PostDTO;
 import com.workshop.mongodb.dto.UserDTO;
 import com.workshop.mongodb.exceptions.ResourceNotFoundException;
-import com.workshop.mongodb.models.entities.Post;
 import com.workshop.mongodb.models.entities.User;
 import com.workshop.mongodb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -61,7 +59,7 @@ public class UserService {
 
     private void copyDtoToEntity(UserDTO userDTO, User user) {
         user.setName(userDTO.getName());
-        user.setName(userDTO.getEmail());
+        user.setEmail(userDTO.getEmail());
     }
     private User getEntityById(String id){
         return userRepository.findById(id)
