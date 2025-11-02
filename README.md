@@ -1,15 +1,13 @@
-#  Workshop: Integração MongoDB + Spring Boot  
+#  Workshop: MiniBlog com MongoDB
 
-[![My Skills](https://skillicons.dev/icons?i=java,spring,mongodb)](https://skillicons.dev)  
-![Status](https://img.shields.io/badge/Concluído-brightgreen)  
+##  Objetivo 
+Caso de uso:
+- API para um MiniBlog contando com: Posts, Users e comentários
 
-##  Visão Geral  
-Este projeto foi desenvolvido em um **workshop prático**, com foco em integrar o **Spring Boot** a um banco **NoSQL (MongoDB)**.  
-O sistema simula um **mini blog** com três entidades principais:  
 
-- **Post**  
-- **Comentários**  
-- **Usuário**  
+- Projeto visando aprender a integrar o banco NoSQL MongoDB a uma API Java com Spring Boot.
+- Dada uma situação problema escolhemos esse banco de dados.
+- Entender motivações e diferença de bancos relacionais e não-relacionais. 
 
 O objetivo analisar o cenário e entender como o **MongoDB** é mais eficiente nesse caso, já que os dados dessas entidades se relacionam naturalmente e podem ser recuperados em **uma única chamada**, diferente de um banco relacional que exigiria vários *joins*.  
 
@@ -23,27 +21,25 @@ O objetivo analisar o cenário e entender como o **MongoDB** é mais eficiente n
 
 ---
 
-##  Aprendizados Técnicos  
-- Diferença prática entre **SQL vs. NoSQL**.  
-- Modelagem de dados em **MongoDB** utilizando Spring Data.  
-- Escrita de **queries customizadas** em JSON.  
-- Uso do **MongoDB Compass** para visualização e gerenciamento.  
-
-
-##  Tecnologias Utilizadas  
-[![My Skills](https://skillicons.dev/icons?i=java,spring,mongodb,docker,git,github)](https://skillicons.dev)  
-
-- **Java 21**  
-- **Spring Boot**  
-- **Spring Data MongoDB**  
-- **MongoDB**  
-- **Docker**  
-- **Git & GitHub**  
+##  Tecnologias utilizadas:
+- Java 21
+- Docker
+- Spring Boot
+- MongoDB
 
 ---
 
-## 🏗️ Cenário no SQL | NoSQL  
-- **SQL:** múltiplos *joins* para unir Posts, Comentários e Usuários.  
-- **NoSQL:** armazena e recupera os dados relacionados juntos, otimizando consultas e melhorando performance em cenários de **alta requisição** e **dados simples**.  
+## Aprendizados
+- Modelagem de dados para MongoDB com Spring Data MongoDB
+- Conceitos de documentos, coleções, e consultas de dados.
+- Relacionamento das entidades, e aplicação Java.
+
+<p>
+  <a href="https://www.linkedin.com/in/gustavokowalski/" target="_blank" style="margin-right: 20px;">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+
+</p>
+
 
 
